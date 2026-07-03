@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Dashboard | Tamils Fashion</title>
+
+    <link rel="stylesheet" href="/css/style.css">
+
+</head>
+
+<body>
+
+<!-- Sidebar -->
+
+<div class="sidebar">
+
+    <div class="logo">
+        <img th:src="@{/images/logo.png}" alt="Logo">
+        <h2>TamilsFashion</h2>
+    </div>
+
+    <ul>
+
+        <li>
+            <a th:href="@{/dashboard}">🏠 Dashboard</a>
+        </li>
+
+        <li>
+            <a th:href="@{/products}">👗 Product Management</a>
+        </li>
+
+        <li>
+            <a th:href="@{/customers}">👤 Customer Management</a>
+        </li>
+
+        <li>
+            <a th:href="@{/billing}">🧾 Billing</a>
+        </li>
+
+        <li>
+            <a th:href="@{/billing/history}">📄 Bill History</a>
+        </li>
+
+        <li>
+            <a th:href="@{/logout}">🚪 Logout</a>
+        </li>
+
+    </ul>
+
+</div>
+
+<!-- Main Content -->
+
+<div class="main-content">
+
+    <div class="header">
+
+        <h1>Dashboard</h1>
+
+        <h3>Welcome shyam</h3>
+
+    </div>
+
+    <!-- Dashboard Cards -->
+
+    <div class="card-container">
+
+        <div class="card">
+            <h2>Total Products</h2>
+            <p th:text="${totalProducts}">0</p>
+        </div>
+
+        <div class="card">
+            <h2>Total Customers</h2>
+            <p th:text="${totalCustomers}"></p>
+        </div>
+
+        <div class="card">
+            <h2>Total Bills</h2>
+            <p th:text="${totalBills}">0</p>
+        </div>
+
+        <div class="card">
+            <h2>Today's Sales</h2>
+            <p>₹<span th:text="${todaySales}">0.00</span></p>
+        </div>
+
+    </div>
+
+    <!-- Quick Actions -->
+
+    <div class="form-container">
+
+        <h2 style="color:#6A0DAD; margin-bottom:20px;">
+            Quick Actions
+        </h2>
+
+        <a th:href="@{/products}" class="btn btn-primary">
+            Manage Products
+        </a>
+
+        <a th:href="@{/customers}" class="btn btn-success">
+            Manage Customers
+        </a>
+
+        <a th:href="@{/billing}" class="btn btn-warning">
+            Create Bill
+        </a>
+
+    </div>
+
+    <div class="footer">
+
+        <p>
+            © 2026 Tamils Fashion Boutique Management System
+        </p>
+
+    </div>
+
+</div>
+
+</body>
+
+</html>

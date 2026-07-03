@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Billing | Tamils Fashion</title>
+
+   <link rel="stylesheet" href="/css/style.css">
+
+</head>
+
+<body>
+
+
+
+<div class="sidebar">
+
+    <div class="logo">
+        <img th:src="@{/images/logo.png}" alt="Logo">
+        <h2>Tamils Fashion</h2>
+    </div>
+
+    <ul>
+        <li><a th:href="@{/dashboard}">🏠 Dashboard</a></li>
+        <li><a th:href="@{/products}">👗 Product Management</a></li>
+        <li><a th:href="@{/customers}">👤 Customer Management</a></li>
+        <li><a th:href="@{/billing}">🧾 Billing</a></li>
+        <li><a th:href="@{/billing/history}">📄 Bill History</a></li>
+        <li><a th:href="@{/logout}">🚪 Logout</a></li>
+    </ul>
+
+</div>
+
+
+
+<div class="main-content">
+
+    <div class="header">
+        <h1>Billing</h1>
+    </div>
+
+    <div class="form-container">
+
+        <form th:action="@{/billing/save}" th:object="${billRequest}" method="post">
+
+           
+
+            <div class="form-group">
+
+                <label>Select Customer</label>
+
+                <select class="form-control" th:field="*{customerId}" required>
+
+                    <option value="">-- Select Customer --</option>
+
+                    <option th:each="customer : ${customers}"
+                            th:value="${customer.id}"
+                            th:text="${customer.customerName}">
+                    </option>
+
+                </select>
+
+            </div>
+            
+
+           
+
+            <div class="form-group">
+
+                <label>Select Product</label>
+
+                <select class="form-control"
+                        name="items[0].productId"
+                        id="product"
+                        required>
+
+                    <option value="">-- Select Product --</option>
+
+                    <option th:each="product : ${products}"
+                            th:value="${product.id}"
+                            th:data-price="${product.price}"
+                            th:text="${product.productName}">
+                    </option>
+
+                </select>
+
+            </div>
+
+           
+
+            <div class="form-group">
+
+                <label>Quantity</label>
+
+                <input type="number"
+                    class="form-control"
+                     name="items[0].quantity"
+                     id="quantity"
+                        min="1"
+                      value="1"
+                     required>
+
+            </div>
+
+           
+
+            <div class="form-group">
+
+                <label>Price</label>
+
+                <input type="text"
+                       class="form-control"
+                       id="price"
+                       readonly>
+
+            </div>
+
+           
+            <div class="form-group">
+
+                <label>Total Amount</label>
+
+                <input type="text"
+                       class="form-control"
+                       id="total"
+                       readonly>
+
+           
+            <div style="margin-top:20px;">
+
+                <button type="button"
+                class="btn btn-success"
+                id="addItem">
+                Add Product
+                </button>
+
+             </div>
+
+<br>
+
+<table id="billTable" border="1" width="100%">
+
+    <thead>
+
+    <tr>
+
+        <th>Product</th>
+        <th>Qty</th>
+        <th>Price</th>
+        <th>Total</th>
+        <th>Action</th>
+
+    </tr>
+
+    </thead>
+
+    <tbody>
+
+    </tbody>
+
+</table>
+
+<br>
+
+<h3>
+
+Grand Total :
+₹ <span id="grandTotal">0.00</span>
+
+</h3>
+
+<div id="hiddenItems"></div>
+
+            <button type="submit" class="btn btn-primary">
+                Save Bill & Generate PDF
+            </button>
+
+        </form>
+
+    </div>
+
+    <div class="footer">
+        <p>© 2026 Tamils Fashion Boutique Management System</p>
+    </div>
+
+</div>
+
+<script th:src="@{/js/billing.js}"></script>
+
+</body>
+
+</html>
